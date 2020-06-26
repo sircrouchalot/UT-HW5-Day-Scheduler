@@ -1,6 +1,14 @@
 var newDate = moment().format('LLLL');
 $("#currentDay").text(newDate);
 
+function hasStorage() {
+	try {
+		localStorage.getItem(i);
+		return true;
+	} catch (exception) {
+		return false;
+	}
+};
 
 function createTimeBlock(hour) {
     var rowEl = $("<div class='row' id='" + hour + "'>");
@@ -34,18 +42,8 @@ function createTimeBlock(hour) {
     
 }
 
-function hasStorage() {
-	try {
-		localStorage.getItem(i);
-		return true;
-	} catch (exception) {
-		return false;
-	}
-};
-
 for (i = 5; i <= 23; i++) {
-    createTimeBlock(i);
-    
+    createTimeBlock(i); 
 }
 
 $(".saveBtn").on("click", function(){

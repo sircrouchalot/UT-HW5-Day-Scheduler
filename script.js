@@ -8,8 +8,10 @@ function createTimeBlock(hour) {
     var timeBlockEl = $("<textarea class='time-block future col-10' id='" + hour + "'>");
     var saveBtnEl = $("<button class='btn saveBtn col-1 btn' id='" + hour + "'>");
 
-    if (hour <= 12) {
+    if (hour <= 11) {
         hourEl.text(hour + "AM");
+    } else if (hour === 12) {
+        hourEl.text(hour + "PM");
     } else {
         hourEl.text((hour - 12) + "PM");
     }
@@ -23,6 +25,12 @@ function createTimeBlock(hour) {
         timeBlockEl.val(localStorage.getItem(hour));
     }
     
+    currentHour = moment().hour();
+    if (hour === currentHour) {
+        timeBlockEl.attr("class", "time-block present col-10");
+    } else if (hour <= currentHour) {
+        timeBlockEl.attr("class", "time-block past col-10")
+    }
     
 }
 
@@ -35,15 +43,9 @@ function hasStorage() {
 	}
 };
 
-for (i = 9; i <= 21; i++) {
+for (i = 5; i <= 23; i++) {
     createTimeBlock(i);
     
-    
-}
-
-
-function loadStorage(){
-
 }
 
 $(".saveBtn").on("click", function(){

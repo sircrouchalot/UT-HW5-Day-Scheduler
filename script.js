@@ -42,7 +42,7 @@ function createTimeBlock(hour) {
     
 }
 
-for (i = 5; i <= 23; i++) {
+for (i = 8; i <= 17; i++) {
     createTimeBlock(i); 
 }
 
